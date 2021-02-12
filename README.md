@@ -13,7 +13,7 @@ Whoever player gets result 1 will be the winner
 
 
 
-#Steps to run the game from IDEA
+# Steps to run the game from IDEA
 1. First make sure apache kafka and zookeeper are running on your localhost with port `9092`
 2. Go to player-one directory and Run PlayerOneApplication.java
 3. Go to player-two directory and Run PlayerOneApplication.java
@@ -22,7 +22,7 @@ Whoever player gets result 1 will be the winner
 
 
 
-#Steps to run the game from Console using Docker
+# Steps to run the game from Console using Docker
 1. First make sure apache kafka and zookeeper are running on your localhost with port `9092`
 2. Make sure you have Docker installed in your local system
 3. Go to player-one directory and Run command ``./mvnw spring-boot:build-image ``
