@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class KafkaConsumer {
 
-  private static final String FINISH = "FINISH";
   @Autowired private final EventPublisher eventPublisher;
 
   @KafkaListener(

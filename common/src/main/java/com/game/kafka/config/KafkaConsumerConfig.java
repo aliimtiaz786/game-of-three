@@ -23,7 +23,7 @@ public class KafkaConsumerConfig {
   public ConsumerFactory<String, GameEvent> gameEventConsumerFactory() {
     Map<String, Object> props = new HashMap<>();
     props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaGeneralConfig.getBootstrapAddress());
-    props.put(ConsumerConfig.GROUP_ID_CONFIG, "greeting");
+    props.put(ConsumerConfig.GROUP_ID_CONFIG, kafkaGeneralConfig.getGroupId());
     return new DefaultKafkaConsumerFactory<>(
         props, new StringDeserializer(), new JsonDeserializer<>(GameEvent.class));
   }
