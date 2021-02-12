@@ -16,7 +16,7 @@ Whoever player gets result 1 will be the winner
 # Steps to run the game from IDEA
 1. First make sure apache kafka and zookeeper are running on your localhost with port `9092`
 2. Go to player-one directory and Run PlayerOneApplication.java
-3. Go to player-two directory and Run PlayerOneApplication.java
+3. Go to player-two directory and Run PlayerTwoApplication.java
 4. You will see the result on console of the both players who ever wins
 
 
