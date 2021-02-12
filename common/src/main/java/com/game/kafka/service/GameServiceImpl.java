@@ -1,19 +1,18 @@
-package com.game.player.one.kafka.impl;
+package com.game.kafka.service;
 
 import com.game.kafka.model.GameEvent;
+import com.game.kafka.model.Player;
 import com.game.kafka.publisher.EventPublisher;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.stereotype.Component;
 
-@Component
 @Slf4j
 @RequiredArgsConstructor
-public class KafkaConsumer {
+public class GameServiceImpl implements GameService {
 
-  @Autowired private final EventPublisher eventPublisher;
+  private final EventPublisher eventPublisher;
+  private final Player player;
 
   @KafkaListener(
       topics = "${kafka.receiveTopicName}",
@@ -26,11 +25,11 @@ public class KafkaConsumer {
     var pass = gameEvent.getPass();
 
     if (isFinished) {
-      log.info("PLAYER ONE YOU HAVE LOST THE GAME");
+      log.info("PLAYER {} YOU HAVE LOST THE GAME", player.getName());
       eventPublisher.flush();
     } else {
       if (pass == 1) {
-        log.info("PLAYER ONE YOU HAVE WON THE GAME");
+        log.info("PLAYER {} YOU HAVE WON THE GAME", player.getName());
         eventPublisher.publishEvent(new GameEvent(true, 0));
         eventPublisher.flush();
       } else if (pass < 0) {
@@ -38,7 +37,7 @@ public class KafkaConsumer {
         eventPublisher.flush();
       } else {
         Integer next = Long.valueOf(Math.round(((double) pass) / 3)).intValue();
-        log.info("PLAYER ONE SENDING NEXT NUM {}", next);
+        log.info("PLAYER {} SENDING NEXT NUM {}", player.getName(), next);
         eventPublisher.publishEvent(new GameEvent(false, next));
       }
     }
