@@ -37,8 +37,14 @@ public class GameServiceImpl implements GameService {
         eventPublisher.flush();
       } else {
         Integer next = Long.valueOf(Math.round(((double) pass) / 3)).intValue();
-        log.info("PLAYER {} SENDING NEXT NUM {}", player.getName(), next);
-        eventPublisher.publishEvent(new GameEvent(false, next));
+        if (next == 1) {
+          log.info("PLAYER {} YOU HAVE WON THE GAME", player.getName());
+          eventPublisher.publishEvent(new GameEvent(true, 0));
+          eventPublisher.flush();
+        } else {
+          log.info("PLAYER {} SENDING NEXT NUM {}", player.getName(), next);
+          eventPublisher.publishEvent(new GameEvent(false, next));
+        }
       }
     }
   }
