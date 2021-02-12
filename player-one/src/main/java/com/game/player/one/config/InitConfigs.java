@@ -1,4 +1,4 @@
-package com.game.player.one.kafka.config;
+package com.game.player.one.config;
 
 import com.game.kafka.model.Player;
 import com.game.kafka.publisher.EventPublisher;
