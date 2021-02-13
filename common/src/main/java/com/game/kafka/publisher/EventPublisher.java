@@ -18,7 +18,7 @@ public class EventPublisher {
   @Autowired private final KafkaTemplate<String, GameEvent> gameEventKafkaTemplate;
 
   public void publishEvent(GameEvent event) {
-    log.info("Sending event : {}", event);
+    log.info("Sending event : {} to topicName : {}", event, kafkaGeneralConfig.getSendTopicName());
     gameEventKafkaTemplate.send(kafkaGeneralConfig.getSendTopicName(), event);
   }
 

@@ -1,0 +1,14 @@
+kafka:
+  bootstrapAddress: kafka:19092
+  groupId: new-group13
+  receiveTopicName: receive
+  sendTopicName: send
+player:
+  name: player-one
+server:
+  port: 8080
+spring:
+  kafka:
+    bootstrap-servers: kafka:19092
+    consumer:
+      auto-offset-reset: earliest

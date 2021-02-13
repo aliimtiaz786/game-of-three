@@ -17,24 +17,24 @@ Whoever player gets result 1 will be the winner
 1. First make sure apache kafka and zookeeper are running on your localhost with port `9092`
 2. Go to player-one directory and Run PlayerOneApplication.java
 3. Go to player-two directory and Run PlayerTwoApplication.java
-4. You will see the result on console of the both players who ever wins
+4. Start the game by going to `localhost:8080/startGame`
+5. You will see the result on console of the both players who ever wins
 
 
 
 
 # Steps to run the game from Console using Docker
-1. First make sure apache kafka and zookeeper are running on your localhost with port `9092`
-2. Make sure you have Docker installed in your local system
-3. Go to player-one directory and Run command ``./mvnw spring-boot:build-image ``
-4. Go to player-two directory and Run command ``./mvnw spring-boot:build-image ``
-4. Now run commands
+1. Make sure you have Docker installed in your local system
+2. Go to player-one directory and Run command `` ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=game/player-one ``
+3. Go to player-two directory and Run command `` ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=game/player-two ``
+4. Now run command 
 ```
-docker run -p 8080:8080 docker.io/library/player-one:0.0.1-SNAPSHOT
-docker run -p 8090:8090 docker.io/library/player-two:0.0.1-SNAPSHOT
-
+docker-compose up -d 
+docker-compose logs -f player-one (for player one)
+docker-compose logs -f player-two (for player two)
 ```
-5. You will see the result on console of the both players who ever wins
+5. Start the game by going to `localhost:8080/startGame`
+6. See the logs who won
 
 # Improvements under progress
-1. Run all the services through docker compose and automate
-2. Implement test cases with embedded kafka
+1. Implement test cases with embedded kafka
