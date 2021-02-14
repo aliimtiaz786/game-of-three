@@ -27,7 +27,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
   player-one:
-    image: docker.io/game/player-one:latest
+    image: player-one:0.0.1-SNAPSHOT
     ports:
     - "8080:8080"
     expose:
@@ -39,7 +39,7 @@ services:
       - zookeeper:zookeeper
       - kafka:kafka
   player-two:
-    image: docker.io/game/player-two:latest
+    image: player-two:0.0.1-SNAPSHOT
     ports:
       - "8090:8090"
     expose:
